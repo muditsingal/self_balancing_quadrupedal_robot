@@ -1,0 +1,818 @@
+#VRML_SIM R2020a utf8
+WorldInfo {
+}
+RectangleArena {
+  floorSize 8 8
+}
+Viewpoint {
+  orientation -0.047429534964706775 -0.9866441115026562 -0.15583271944673754 2.558134470185366
+  position -1.2976143714237702 1.720405749507458 -1.4829906351129665
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF prismatic_tester Robot {
+  translation -1.4395662416836689e-06 0.03366634991764993 -3.2299973909912576
+  rotation -0.7535404016953308 1.1988486119602411e-05 -0.6574015993813186 -5.739340468692993e-05
+  children [
+    DEF FR_slider SliderJoint {
+      jointParameters JointParameters {
+        position 0.04998896375001823
+        axis 0 1 0
+      }
+      device [
+        LinearMotor {
+          name "FR_slider"
+          maxForce 1000
+        }
+      ]
+      endPoint Solid {
+        translation 0.15286876159157345 0.17053820149579205 0.09718588687925767
+        rotation -0.7074872319887735 0.009267148704104075 -0.7066653638942264 -0.013229518048187032
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0.666667 0
+              metalness 0
+            }
+            geometry DEF slider_box Box {
+              size 0.15 0.05 0.15
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE slider_box
+        physics Physics {
+        }
+      }
+    }
+    DEF FL_slider SliderJoint {
+      jointParameters JointParameters {
+        position 0.0799889637500182
+        axis 0 1 0
+      }
+      device [
+        LinearMotor {
+          name "FL_slider"
+          maxForce 1000
+        }
+      ]
+      endPoint Solid {
+        translation 0.152743 0.202316 -0.0926882
+        rotation -0.707422904543762 0.009268059825948522 -0.7067297483436862 -0.013228272605808354
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0.666667 0
+              metalness 0
+            }
+            geometry Box {
+              size 0.15 0.05 0.15
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE slider_box
+        physics Physics {
+        }
+      }
+    }
+    DEF BR_slider SliderJoint {
+      jointParameters JointParameters {
+        position 0.04998896375001812
+        axis 0 1 0
+      }
+      device [
+        LinearMotor {
+          name "BR_slider"
+          maxForce 1000
+        }
+      ]
+      endPoint Solid {
+        translation -0.15711093591714592 0.16763988860695947 0.09711107857772872
+        rotation -0.707382259289191 0.009274960665188686 -0.7067703405969854 -0.013231485822114999
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0.666667 0
+              metalness 0
+            }
+            geometry Box {
+              size 0.15 0.05 0.15
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE slider_box
+        physics Physics {
+        }
+      }
+    }
+    DEF BL_slider SliderJoint {
+      jointParameters JointParameters {
+        position 0.04998896375001815
+        axis 0 1 0
+      }
+      device [
+        LinearMotor {
+          name "BL_slider"
+          maxForce 1000
+        }
+      ]
+      endPoint Solid {
+        translation -0.15609642328011297 0.16942747749117268 -0.09290229243774606
+        rotation -0.7073162025601037 0.00927623211944868 -0.7068364316541844 -0.01323027872417368
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0.666667 0
+              metalness 0
+            }
+            geometry Box {
+              size 0.15 0.05 0.15
+            }
+          }
+        ]
+        name "solid(4)"
+        boundingObject USE slider_box
+        physics Physics {
+        }
+      }
+    }
+    Solid {
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 0.333333 1
+          }
+          geometry DEF prismatic_base Box {
+            size 0.6 0.1 0.6
+          }
+        }
+      ]
+      boundingObject USE prismatic_base
+      physics Physics {
+      }
+    }
+  ]
+  name "robot(1)"
+  boundingObject USE slider_box
+  physics Physics {
+  }
+  controller "prismatic_tester"
+}
+DEF horse Robot {
+  translation -0.405208 1.27363 -0.170148
+  rotation 0 1 0 -3.14
+  children [
+    DEF body_ori InertialUnit {
+      translation 0 0.02 0
+      rotation 0 1 0 3.14159
+      children [
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry DEF imu_colider Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "body_ori"
+      boundingObject USE imu_colider
+      physics Physics {
+      }
+    }
+    Solid {
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.407843 0.0117647
+            metalness 0
+          }
+          geometry DEF body_solid_b Box {
+            size 0.4 0.03 0.17
+          }
+        }
+      ]
+      name "solid(4)"
+      boundingObject USE body_solid_b
+      physics Physics {
+        density -1
+        mass 5
+      }
+    }
+    DEF BL_hip HingeJoint {
+      jointParameters HingeJointParameters {
+        position -5.013072455129877e-06
+        anchor 0.155 0 0.095
+      }
+      device [
+        DEF BL_hip RotationalMotor {
+          name "BL_hip"
+          controlPID 7.4 0 0.45
+          maxTorque 4
+        }
+      ]
+      endPoint Solid {
+        translation 0.14499225175473032 1.761274929860162e-05 0.09499996224084424
+        rotation -2.0609958190416956e-06 1.6833404412449584e-06 0.9999999999964593 1.5699997901340657
+        children [
+          DEF BL_1 HingeJoint {
+            jointParameters HingeJointParameters {
+              position 2.190890294554124e-06
+              axis 0 0 1
+              anchor 0 -0.016 0
+            }
+            device [
+              RotationalMotor {
+                name "BL_1"
+                controlPID 7.4 0 0.45
+                maxTorque 4
+              }
+            ]
+            endPoint Solid {
+              translation -0.049999999999895094 -0.016000108764864074 0
+              rotation 0 0 1 1.5700021729760714
+              children [
+                DEF BL_2 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position 4.058092267070991e-07
+                    axis 0 0 1
+                    anchor 0 0.0525 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "BL_2"
+                      controlPID 7.4 0 0.45
+                      maxTorque 4
+                    }
+                  ]
+                  endPoint Solid {
+                    translation -2.111999137775104e-08 0.10499999999999285 0
+                    rotation 0 0 1 4.0535540904806456e-07
+                    children [
+                      DEF Force_BL TouchSensor {
+                        translation 0.00016693584180513255 0.049525460727943615 -9.279475810103355e-05
+                        rotation 0 0 1 -1.57
+                        children [
+                          DEF BL_foot_main Shape {
+                            appearance PBRAppearance {
+                              metalness 0.1
+                            }
+                            geometry DEF BL_foot Sphere {
+                              radius 0.01
+                              subdivision 2
+                            }
+                          }
+                        ]
+                        name "Force_BL"
+                        boundingObject USE BL_foot
+                        physics Physics {
+                        }
+                        type "force-3d"
+                      }
+                      DEF BL_low Shape {
+                        appearance PBRAppearance {
+                          metalness 0.1
+                        }
+                        geometry DEF BL_force_low Cylinder {
+                          height 0.1
+                          radius 0.006
+                        }
+                      }
+                    ]
+                    boundingObject USE BL_low
+                    physics Physics {
+                    }
+                    locked TRUE
+                  }
+                }
+                DEF BL_mid Shape {
+                  appearance PBRAppearance {
+                    metalness 0.1
+                  }
+                  geometry Cylinder {
+                    height 0.1
+                    radius 0.006
+                  }
+                }
+              ]
+              boundingObject USE BL_mid
+              physics Physics {
+              }
+            }
+          }
+          Shape {
+            appearance DEF leg_color PBRAppearance {
+              baseColor 0.47451 0.47451 0.47451
+              metalness 0.1
+            }
+            geometry DEF FL_up_link Cylinder {
+              height 0.02
+              radius 0.009
+            }
+          }
+        ]
+        boundingObject USE FL_up_link
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    DEF BR_hip HingeJoint {
+      jointParameters HingeJointParameters {
+        position -9.324276060642346e-08
+        anchor 0.155 0 -0.095
+      }
+      device [
+        DEF BR_hip RotationalMotor {
+          name "BR_hip"
+          controlPID 7.4 0 0.45
+          maxTorque 4
+        }
+      ]
+      endPoint Solid {
+        translation 0.1449937703428986 1.7757626160929496e-05 -0.09500023104324218
+        rotation 3.268490774221498e-07 -7.031218073019633e-07 0.9999999999996995 1.5699999313381234
+        children [
+          DEF BR_1 HingeJoint {
+            jointParameters HingeJointParameters {
+              position 1.3703146514018588e-06
+              axis 0 0 1
+              anchor 0 -0.016 0
+            }
+            device [
+              RotationalMotor {
+                name "BR_1"
+                controlPID 7.4 0 0.45
+                maxTorque 4
+              }
+            ]
+            endPoint Solid {
+              translation -0.04999999999995533 -0.01600006744570704 0
+              rotation 0 0 1 1.570001346592849
+              children [
+                DEF BR_2 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -3.9998613489431716e-11
+                    axis 0 0 1
+                    anchor 0 0.0525 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "BR_2"
+                      controlPID 7.4 0 0.45
+                      maxTorque 4
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 1.1553996429566198e-09 0.10500000000000008 0
+                    rotation 0 0 1 0
+                    children [
+                      TouchSensor {
+                        translation 0 0.05 0
+                        rotation 0 0 1 -1.57
+                        children [
+                          USE BL_foot_main
+                        ]
+                        name "Force_BR"
+                        boundingObject USE BL_foot
+                        physics Physics {
+                        }
+                        type "force-3d"
+                      }
+                      DEF BL_low Shape {
+                        appearance PBRAppearance {
+                          metalness 0.1
+                        }
+                        geometry Cylinder {
+                          height 0.1
+                          radius 0.006
+                        }
+                      }
+                    ]
+                    boundingObject USE BL_low
+                    physics Physics {
+                    }
+                  }
+                }
+                DEF BL_mid Shape {
+                  appearance PBRAppearance {
+                    metalness 0.1
+                  }
+                  geometry Cylinder {
+                    height 0.1
+                    radius 0.006
+                  }
+                }
+              ]
+              boundingObject USE BL_mid
+              physics Physics {
+              }
+            }
+          }
+          Shape {
+            appearance DEF leg_color PBRAppearance {
+              baseColor 0.47451 0.47451 0.47451
+              metalness 0.1
+            }
+            geometry DEF FL_up_link Cylinder {
+              height 0.02
+              radius 0.009
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE FL_up_link
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    DEF FL_hip HingeJoint {
+      jointParameters HingeJointParameters {
+        position 6.149971072328138e-07
+        anchor -0.145 0.000238894 0.095
+      }
+      device [
+        DEF FL_hip RotationalMotor {
+          name "FL_hip"
+          controlPID 7.4 0 0.45
+          maxTorque 4
+        }
+      ]
+      endPoint Solid {
+        translation -0.16499291052691262 0.0002529849277311534 0.09500017173423629
+        rotation 1.0455052278966475e-06 -1.425213327256795e-06 0.9999999999984379 1.5700007061738952
+        children [
+          DEF FL_1 HingeJoint {
+            jointParameters HingeJointParameters {
+              position 8.04787741433889e-07
+              axis 0 0 1
+              anchor 0 -0.016 0
+            }
+            device [
+              DEF FL_1 RotationalMotor {
+                name "FL_1"
+                controlPID 7.4 0 0.45
+                maxTorque 4
+              }
+            ]
+            endPoint Solid {
+              translation -0.049999999999990635 -0.01600004106167491 0
+              rotation 0 0 1 1.570000818912394
+              children [
+                DEF FL_2 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -2.9279284898057e-07
+                    axis 0 0 1
+                    anchor 0 0.0525 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "FL_2"
+                      controlPID 7.4 0 0.45
+                      maxTorque 4
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 1.4780479194904243e-08 0.1049999999999886 0
+                    rotation 0 0 -1 2.9351883535969594e-07
+                    children [
+                      TouchSensor {
+                        translation 0 0.05 0
+                        rotation 0 0 1 -1.57
+                        children [
+                          USE BL_foot_main
+                        ]
+                        name "Force_FL"
+                        boundingObject USE BL_foot
+                        physics Physics {
+                        }
+                        type "force-3d"
+                      }
+                      DEF BL_low Shape {
+                        appearance PBRAppearance {
+                          metalness 0.1
+                        }
+                        geometry Cylinder {
+                          height 0.1
+                          radius 0.006
+                        }
+                      }
+                    ]
+                    boundingObject USE BL_low
+                    physics Physics {
+                    }
+                  }
+                }
+                DEF BL_mid Shape {
+                  appearance PBRAppearance {
+                    metalness 0.1
+                  }
+                  geometry Cylinder {
+                    height 0.1
+                    radius 0.006
+                  }
+                }
+              ]
+              boundingObject USE BL_mid
+              physics Physics {
+              }
+            }
+          }
+          Shape {
+            appearance DEF leg_color PBRAppearance {
+              baseColor 0.47451 0.47451 0.47451
+              metalness 0.1
+            }
+            geometry DEF FL_up_link Cylinder {
+              height 0.02
+              radius 0.009
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE FL_up_link
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    DEF FR_hip HingeJoint {
+      jointParameters HingeJointParameters {
+        position -4.461885906473755e-06
+        anchor -0.145 0.000239156 -0.095
+      }
+      device [
+        DEF FR_hip RotationalMotor {
+          name "FR_hip"
+          controlPID 7.4 0 0.45
+          maxTorque 4
+        }
+      ]
+      endPoint Solid {
+        translation -0.1649927412193687 0.00025352430048335937 -0.09499979303115803
+        rotation -1.4993516351433093e-06 1.119495839836054e-06 0.9999999999982493 1.5700007280357535
+        children [
+          DEF FR_1 HingeJoint {
+            jointParameters HingeJointParameters {
+              position 3.5768720858635195e-07
+              axis 0 0 1
+              anchor 0 -0.016 0
+            }
+            device [
+              DEF FR_1 RotationalMotor {
+                name "FR_1"
+                controlPID 7.4 0 0.45
+                maxTorque 4
+              }
+            ]
+            endPoint Solid {
+              translation -0.049999999999996415 -0.016000018418418412 0
+              rotation 0 0 1 1.5700003660472668
+              children [
+                DEF FR_2 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -5.106447566432529e-07
+                    axis 0 0 1
+                    anchor 0 0.0525 0
+                  }
+                  device [
+                    RotationalMotor {
+                      name "FR_2"
+                      controlPID 7.4 0 0.45
+                      maxTorque 4
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 2.6395647659187738e-08 0.1049999999999859 0
+                    rotation 0 0 -1 5.110033809984414e-07
+                    children [
+                      TouchSensor {
+                        translation 0 0.05 0
+                        rotation 0 0 1 -1.57
+                        children [
+                          USE BL_foot_main
+                        ]
+                        name "Force_FR"
+                        boundingObject USE BL_foot
+                        physics Physics {
+                        }
+                        recognitionColors [
+                          0 0 0
+                        ]
+                        type "force-3d"
+                      }
+                      DEF BL_low Shape {
+                        appearance PBRAppearance {
+                          metalness 0.1
+                        }
+                        geometry Cylinder {
+                          height 0.1
+                          radius 0.006
+                        }
+                      }
+                    ]
+                    boundingObject USE BL_low
+                    physics Physics {
+                    }
+                  }
+                }
+                DEF BL_mid Shape {
+                  appearance PBRAppearance {
+                    metalness 0.1
+                  }
+                  geometry Cylinder {
+                    height 0.1
+                    radius 0.006
+                  }
+                }
+              ]
+              boundingObject USE BL_mid
+              physics Physics {
+              }
+            }
+          }
+          Shape {
+            appearance DEF leg_color PBRAppearance {
+              baseColor 0.47451 0.47451 0.47451
+              metalness 0.1
+            }
+            geometry DEF FL_up_link Cylinder {
+              height 0.02
+              radius 0.009
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE FL_up_link
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+  ]
+  name "horse"
+  boundingObject Box {
+    size 0.4 0.03 0.17
+  }
+  physics Physics {
+  }
+  controller "torque_sense_test"
+  battery [
+    0
+  ]
+}
+Ball {
+  translation -2.332874963080242 0.03171519939867867 1.2110164522859326
+  rotation -0.0682437961655012 0.5326228379671979 0.843596880483024 0.025216184093232258
+  mass 0.5
+}
+DEF Sasta_stewart_platform Robot {
+  translation 0 0.03 0
+  children [
+    DEF lower_joint HingeJoint {
+      jointParameters HingeJointParameters {
+        position -3.177165662120217e-05
+        anchor -1.81 0.5 0
+      }
+      device [
+        RotationalMotor {
+          name "roll_motor"
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation 0.2600000000003626 0.5 0
+        rotation -1 0 0 3.177165193453644e-05
+        children [
+          DEF upper_joint HingeJoint {
+            jointParameters HingeJointParameters {
+              position -0.0004948153693498905
+              axis 0 0 1
+              anchor 0 0.5 1.9
+            }
+            device [
+              RotationalMotor {
+                name "pitch_motor"
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation -0.0073408166506230745 0.5011058419965191 -0.19999999999972706
+              rotation 0 0 1 0.00020750502762712045
+              children [
+                DEF pitch_sur_real Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.384314 0.384314 0.384314
+                    metalness 0
+                  }
+                  geometry DEF pitch_sur Box {
+                    size 4 0.05 4
+                  }
+                }
+              ]
+              boundingObject USE pitch_sur_real
+              physics Physics {
+                density 10
+              }
+            }
+          }
+          DEF pitch_platform Group {
+            children [
+              Transform {
+                translation 0 0.275 1.9
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.666667 0 0
+                      metalness 0
+                    }
+                    geometry Box {
+                      size 0.1 0.5 0.1
+                    }
+                  }
+                ]
+              }
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.666667 0 0
+                  metalness 0
+                }
+                geometry Box {
+                  size 4 0.05 4
+                }
+              }
+            ]
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE pitch_platform
+        physics Physics {
+          density 10
+        }
+      }
+    }
+    Solid {
+      translation 6.159545836465809e-06 -0.0504727409869536 -2.434216843384145e-08
+      rotation -0.19865164488573472 0.9337729616338935 -0.29766689454096107 5.128174647327654e-06
+      children [
+        DEF roll_platform Group {
+          children [
+            Transform {
+              translation -1.81 0.3 0
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.333333 0 0.498039
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.1 0.5 0.1
+                  }
+                }
+              ]
+            }
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.333333 0 0.498039
+                metalness 0
+              }
+              geometry Box {
+                size 4 0.1 4
+              }
+            }
+          ]
+        }
+      ]
+      boundingObject USE roll_platform
+      physics Physics {
+      }
+    }
+  ]
+  controller "tilt_mechanism"
+}
+DEF test_box Solid {
+  translation 0.3093845193533234 0.024803830300017572 -2.7087074372818627
+  rotation 1.8449467227705298e-09 1 1.8351201946983838e-09 1.5078289509526014e-05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 1 0
+        metalness 0
+      }
+      geometry DEF test_box Box {
+        size 0.1 0.05 0.1
+      }
+    }
+  ]
+  boundingObject USE test_box
+  physics Physics {
+  }
+}
