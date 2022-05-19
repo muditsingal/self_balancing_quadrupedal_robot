@@ -6,7 +6,7 @@ Title of the paper:
 ### Video Demonstrations:
 
 ##### Balancing on the spot:
-[![Balancing on the spot](https://youtu.be/sDX-ZdtIA2w/0.jpg)](https://youtu.be/sDX-ZdtIA2w)
+[![Balancing on the spot](https://youtu.be/sDX-ZdtIA2w/zero1.jpg)](https://youtu.be/sDX-ZdtIA2w)
 
 ##### Balancing while executing a walking gait:
 [![Balancing while walking](https://youtu.be/s8k-fulf5qg/0.jpg)](https://youtu.be/s8k-fulf5qg)
